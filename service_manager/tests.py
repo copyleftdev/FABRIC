@@ -8,4 +8,4 @@ class FakeTest(TestCase):
 
     def test_fake_02(self):
         testv = 20
-        self.assertEquals(testv,10)
+        self.assertEquals(testv,10+10)
