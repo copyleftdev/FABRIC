@@ -8,7 +8,7 @@ def commit():
     local("git add . && git commit -am.")
 
 def push():
-    local("git push")
+    local("git push -u origin master")
 
 
 def prepare_deploy():
