@@ -14,7 +14,7 @@ def test():
     local("./manage.py test service_manager")
 
 def commit():
-    local("git add . && git commit")
+    local("git add . && git commit -am.")
 
 def push():
     local("git push -u origin master")
