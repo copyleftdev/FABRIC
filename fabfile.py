@@ -1,6 +1,8 @@
-from fabric.api import local, settings, abort
+from fabric.api import local, settings, abort, run, cd, env
 from fabric.contrib.console import confirm
 
+env.hosts = ["target-01.codetestcode.io", "target-02.codetestcode.io"
+             "target-03.codetestcode.io", "target-04.codetestcode.io"]
 
 def test_with_fail():
     with settings(warn_only=True):
@@ -22,3 +24,12 @@ def prepare_deploy():
     test()
     commit()
     push()
+
+def deploy():
+    code_dir = "~/deploy_app"
+    with settings(warn_only=True):
+        if run("test -d {}".format(code_dir)).failed:
+            run("git clone https://github.com/copyleftdev/FABRIC.git {}".format(code_dir))
+    with cd(code_dir):
+        run("git pull")
+        run("touch app.wsgi")
